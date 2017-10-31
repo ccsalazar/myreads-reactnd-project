@@ -1,4 +1,5 @@
 import React,{Component} from 'react'
+import { Link } from 'react-router-dom'
 
 class MainPage extends Component {
   render(){
@@ -161,7 +162,7 @@ class MainPage extends Component {
           </div>
         </div>
         <div className="open-search">
-          {/* <a onClick={this.props.selectPage(true)}>Add a book</a> */}
+          <Link to='/search' >Add a book</Link>
         </div>
       </div>
     )
