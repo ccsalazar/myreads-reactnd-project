@@ -1,7 +1,7 @@
 import React,{ Component } from 'react'
 import { Link } from 'react-router-dom'
 
-class SearchPage extends Component{
+class SearchBooks extends Component{
 
   render(){
     return(
@@ -29,4 +29,4 @@ class SearchPage extends Component{
   }
 }
 
-export default SearchPage;
+export default SearchBooks;

@@ -2,7 +2,8 @@ import React,{Component} from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
 
-class MainPage extends Component {
+
+class ListBooks extends Component {
   static PropTypes = {
     books:PropTypes.array.isRequired
   }
@@ -63,4 +64,4 @@ class MainPage extends Component {
   }
 }
 
-export default MainPage;
+export default ListBooks;
