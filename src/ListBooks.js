@@ -1,7 +1,7 @@
 import React,{Component} from 'react'
 import { Link } from 'react-router-dom'
 import PropTypes from 'prop-types'
-import BookShelfContent from './BookShelfContent'
+// import BookShelfContent from './BookShelfContent'
 
 
 class ListBooks extends Component {
@@ -30,19 +30,91 @@ class ListBooks extends Component {
             <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
-                <BookShelfContent shelfContent={currentlyReading}/>
+                <ol className="books-grid">
+                  {currentlyReading.map((book) => (
+                    <li key={book.id}>
+                      <div className="book">
+                        <div className="book-top">
+                          <div className="book-cover" style={{
+                            width: 128,
+                            height: 193,
+                            backgroundImage: `url(${book.imageLinks.thumbnail})`
+                          }}></div>
+                          <div className="book-shelf-changer">
+                            <select>
+                              <option value="none" disabled="disabled">Move to...</option>
+                              <option value="currentlyReading">Currently Reading</option>
+                              <option value="wantToRead">Want to Read</option>
+                              <option value="read">Read</option>
+                              <option value="none">None</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="book-title">{book.title}</div>
+                        <div className="book-authors">{book.authors}</div>
+                      </div>
+                    </li>))}
+                  </ol>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
-                <BookShelfContent shelfContent={wantToRead}/>
+                <ol className="books-grid">
+                  {wantToRead.map((book) => (
+                    <li key={book.id}>
+                      <div className="book">
+                        <div className="book-top">
+                          <div className="book-cover" style={{
+                            width: 128,
+                            height: 193,
+                            backgroundImage: `url(${book.imageLinks.thumbnail})`
+                          }}></div>
+                          <div className="book-shelf-changer">
+                            <select>
+                              <option value="none" disabled="disabled">Move to...</option>
+                              <option value="currentlyReading">Currently Reading</option>
+                              <option value="wantToRead">Want to Read</option>
+                              <option value="read">Read</option>
+                              <option value="none">None</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="book-title">{book.title}</div>
+                        <div className="book-authors">{book.authors}</div>
+                      </div>
+                    </li>))}
+                  </ol>
               </div>
             </div>
             <div className="bookshelf">
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
-                <BookShelfContent shelfContent={finishedReading}/>
+                <ol className="books-grid">
+                  {finishedReading.map((book) => (
+                    <li key={book.id}>
+                      <div className="book">
+                        <div className="book-top">
+                          <div className="book-cover" style={{
+                            width: 128,
+                            height: 193,
+                            backgroundImage: `url(${book.imageLinks.thumbnail})`
+                          }}></div>
+                          <div className="book-shelf-changer">
+                            <select>
+                              <option value="none" disabled="disabled">Move to...</option>
+                              <option value="currentlyReading">Currently Reading</option>
+                              <option value="wantToRead">Want to Read</option>
+                              <option value="read">Read</option>
+                              <option value="none">None</option>
+                            </select>
+                          </div>
+                        </div>
+                        <div className="book-title">{book.title}</div>
+                        <div className="book-authors">{book.authors}</div>
+                      </div>
+                    </li>))}
+                  </ol>
               </div>
             </div>
           </div>
