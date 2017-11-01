@@ -5,20 +5,28 @@ import PropTypes from 'prop-types'
 
 
 class ListBooks extends Component {
-  static PropTypes = {
-    books:PropTypes.array.isRequired
+  static propTypes = {
+    currentlyReading:PropTypes.array.isRequired,
+    wantToRead:PropTypes.array.isRequired,
+    read:PropTypes.array.isRequired
   }
+
+  // componentWillReceiveProps(nextProps){
+  //   let currentlyReading;
+  //   let wantToRead;
+  //   let finishedReading;
+  //   if (nextProps!==this.props){
+  //     currentlyReading = this.props.books.filter(book=>book.shelf==='currentlyReading');
+  //     wantToRead = this.props.books.filter(book=>book.shelf==='wantToRead');
+  //     finishedReading = this.props.books.filter(book=>book.shelf==='read');
+  //   }
+  // }
 
   render(){
 
-    const {books} = this.props;
-    let currentlyReading;
-    let wantToRead;
-    let finishedReading;
+    const {currentlyReading,wantToRead,read,changeBookShelf} = this.props;
 
-    currentlyReading = books.filter(book=>book.shelf==='currentlyReading');
-    wantToRead = books.filter(book=>book.shelf==='wantToRead');
-    finishedReading = books.filter(book=>book.shelf==='read');
+//console.log(finishedReading);
 
     return(
       <div className="list-books">
@@ -41,7 +49,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -61,8 +69,8 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {wantToRead.map((book) => (
-                    <li key={book.id}>
+                  {wantToRead.map((book) => ((book.shelf==='wantToRead')&&
+                    (<li key={book.id}>
                       <div className="book">
                         <div className="book-top">
                           <div className="book-cover" style={{
@@ -71,7 +79,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -83,7 +91,7 @@ class ListBooks extends Component {
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">{book.authors}</div>
                       </div>
-                    </li>))}
+                    </li>)))}
                   </ol>
               </div>
             </div>
@@ -91,8 +99,8 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {finishedReading.map((book) => (
-                    <li key={book.id}>
+                  {read.map((book) => ((book.shelf==='read')&&
+                    (<li key={book.id}>
                       <div className="book">
                         <div className="book-top">
                           <div className="book-cover" style={{
@@ -101,7 +109,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select>
+                            <select onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -113,7 +121,7 @@ class ListBooks extends Component {
                         <div className="book-title">{book.title}</div>
                         <div className="book-authors">{book.authors}</div>
                       </div>
-                    </li>))}
+                    </li>)))}
                   </ol>
               </div>
             </div>
