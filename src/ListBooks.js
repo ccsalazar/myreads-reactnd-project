@@ -6,27 +6,14 @@ import PropTypes from 'prop-types'
 
 class ListBooks extends Component {
   static propTypes = {
-    currentlyReading:PropTypes.array.isRequired,
-    wantToRead:PropTypes.array.isRequired,
-    read:PropTypes.array.isRequired
+    books:PropTypes.array.isRequired
   }
 
-  // componentWillReceiveProps(nextProps){
-  //   let currentlyReading;
-  //   let wantToRead;
-  //   let finishedReading;
-  //   if (nextProps!==this.props){
-  //     currentlyReading = this.props.books.filter(book=>book.shelf==='currentlyReading');
-  //     wantToRead = this.props.books.filter(book=>book.shelf==='wantToRead');
-  //     finishedReading = this.props.books.filter(book=>book.shelf==='read');
-  //   }
-  // }
 
   render(){
 
-    const {currentlyReading,wantToRead,read,changeBookShelf} = this.props;
+    const {books,changeBookShelf} = this.props;
 
-//console.log(finishedReading);
 
     return(
       <div className="list-books">
@@ -35,11 +22,11 @@ class ListBooks extends Component {
         </div>
         <div className="list-books-content">
           <div>
-            <div className="bookshelf">
+            {/* <div className="bookshelf">
               <h2 className="bookshelf-title">Currently Reading</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {currentlyReading.map((book) => (
+                  {books.map((book) => (
                     <li key={book.id}>
                       <div className="book">
                         <div className="book-top">
@@ -64,12 +51,12 @@ class ListBooks extends Component {
                     </li>))}
                   </ol>
               </div>
-            </div>
+            </div> */}
             <div className="bookshelf">
               <h2 className="bookshelf-title">Want to Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {wantToRead.map((book) => ((book.shelf==='wantToRead')&&
+                  {books.map((book) => ((book.shelf==='wantToRead')&&
                     (<li key={book.id}>
                       <div className="book">
                         <div className="book-top">
@@ -99,7 +86,7 @@ class ListBooks extends Component {
               <h2 className="bookshelf-title">Read</h2>
               <div className="bookshelf-books">
                 <ol className="books-grid">
-                  {read.map((book) => ((book.shelf==='read')&&
+                  {books.map((book) => ((book.shelf==='read')&&
                     (<li key={book.id}>
                       <div className="book">
                         <div className="book-top">
