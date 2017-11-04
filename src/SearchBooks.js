@@ -15,19 +15,19 @@ class SearchBooks extends Component{
   }
 
   updateQuery = (query)=>{
-    this.setState({query})
+    this.setState({query});
     if(query){
       BooksAPI.search(query,20).then((results)=>{
         if (!results || results.error){
-          this.setState({results:[]})
+          this.setState({results:[]});
         }
         else {
-          this.getShelfStatus(results)
-          this.setState({results})
+          this.getShelfStatus(results);
+          this.setState({results});
         }
       })
     } else {
-      this.setState({results:[]})
+      this.setState({results:[]});
     }
   }
 
@@ -39,15 +39,16 @@ class SearchBooks extends Component{
         }
       })
       if (!result.shelf){
-        result.shelf='none'
+        result.shelf='none';
       }
     })
   }
 
 
   render(){
-    const {changeBookShelf} = this.props
-    const {query,results} = this.state
+
+    const {changeBookShelf} = this.props;
+    const {query,results} = this.state;
     this.getShelfStatus(results);
 
     return(
@@ -64,7 +65,8 @@ class SearchBooks extends Component{
         </div>
         <div className="search-books-results">
           <ol className="books-grid">
-            {results.map((book) => (
+            {
+              results.map((book) => (
               <li key={book.id}>
                 <div className="book">
                   <div className="book-top">
@@ -74,7 +76,7 @@ class SearchBooks extends Component{
                       backgroundImage: `url(${book.imageLinks.thumbnail})`
                     }}></div>
                     <div className="book-shelf-changer">
-                      <select defaultValue={book.shelf?book.shelf:'none'} onChange={(event)=>changeBookShelf(event.target.value,book)}>
+                      <select defaultValue={book.shelf?book.shelf:'none'}                    onChange={(event)=>changeBookShelf(event.target.value,book)}>
                         <option value="none" disabled="disabled">Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
@@ -88,7 +90,8 @@ class SearchBooks extends Component{
                     {book.authors?book.authors.join(', '):book.authors}
                   </div>
                 </div>
-              </li>))}
+              </li>))
+            }
           </ol>
         </div>
       </div>
