@@ -22,7 +22,7 @@ class SearchBooks extends Component{
           this.setState({results:[]})
         }
         else {
-          this.bookShelfUpdate(results)
+          this.getShelfStatus(results)
           this.setState({results})
         }
       })
@@ -31,7 +31,7 @@ class SearchBooks extends Component{
     }
   }
 
-  bookShelfUpdate = (results)=>{
+  getShelfStatus = (results)=>{
     results.forEach(result=>{
       this.props.books.forEach(book=>{
         if(result.id===book.id){
@@ -48,7 +48,8 @@ class SearchBooks extends Component{
   render(){
     const {changeBookShelf} = this.props
     const {query,results} = this.state
-    this.bookShelfUpdate(results);
+    this.getShelfStatus(results);
+    results.forEach(result=>{console.log(result.shelf)})
 
     return(
       <div className="search-books">
@@ -74,7 +75,7 @@ class SearchBooks extends Component{
                       backgroundImage: `url(${book.imageLinks.thumbnail})`
                     }}></div>
                     <div className="book-shelf-changer">
-                      <select value={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
+                      <select defaultValue={book.shelf?book.shelf:'none'} onChange={(event)=>changeBookShelf(event.target.value,book)}>
                         <option value="none" disabled="disabled">Move to...</option>
                         <option value="currentlyReading">Currently Reading</option>
                         <option value="wantToRead">Want to Read</option>
