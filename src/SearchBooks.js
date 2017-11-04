@@ -49,7 +49,6 @@ class SearchBooks extends Component{
     const {changeBookShelf} = this.props
     const {query,results} = this.state
     this.getShelfStatus(results);
-    results.forEach(result=>{console.log(result.shelf)})
 
     return(
       <div className="search-books">
