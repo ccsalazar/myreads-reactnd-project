@@ -44,10 +44,11 @@ class SearchBooks extends Component{
     })
   }
 
+
   render(){
     const {changeBookShelf} = this.props
     const {query,results} = this.state
-    results.forEach(result=>{console.log(result.shelf)})
+    this.bookShelfUpdate(results);
 
     return(
       <div className="search-books">
