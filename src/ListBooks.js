@@ -33,7 +33,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select onChange={(event)=>changeBookShelf(event.target.value,book)}>
+                            <select defaultValue={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -43,7 +43,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors}</div>
+                        <div className="book-authors">{book.authors.join(', ')}</div>
                       </div>
                     </li>)))}
                   </ol>
@@ -63,7 +63,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select value={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
+                            <select defaultValue={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -73,7 +73,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors}</div>
+                        <div className="book-authors">{book.authors.join(', ')}</div>
                       </div>
                     </li>)))}
                   </ol>
@@ -94,7 +94,7 @@ class ListBooks extends Component {
                             backgroundImage: `url(${book.imageLinks.thumbnail})`
                           }}></div>
                           <div className="book-shelf-changer">
-                            <select value={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
+                            <select defaultValue={book.shelf} onChange={(event)=>changeBookShelf(event.target.value,book)}>
                               <option value="none" disabled="disabled">Move to...</option>
                               <option value="currentlyReading">Currently Reading</option>
                               <option value="wantToRead">Want to Read</option>
@@ -104,7 +104,7 @@ class ListBooks extends Component {
                           </div>
                         </div>
                         <div className="book-title">{book.title}</div>
-                        <div className="book-authors">{book.authors}</div>
+                        <div className="book-authors">{book.authors.join(', ')}</div>
                       </div>
                     </li>)))}
                   </ol>
