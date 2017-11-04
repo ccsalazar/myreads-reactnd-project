@@ -5,17 +5,31 @@ import * as BooksAPI from './BooksAPI'
 class SearchBooks extends Component{
   state = {
     query : '',
-    searchResults: []
+    results: []
   }
 
-  updateQuery = (query)=>(
-    this.setState({query:query.trim()
-    })
-  );
-
+  updateQuery = (query)=>{
+    this.setState({query})
+    if(query){
+      BooksAPI.search(query,20).then((results)=>{
+        if (!results || results.error){
+          this.setState({results:[]})
+        }
+        else {
+          this.setState({results})
+        }
+      })
+    } else {
+      this.setState({results:[]})
+    }
+}
 
   render(){
     const {query} = this.state
+    console.log('query',query)
+    console.log('results',this.state.results)
+
+
     return(
       <div className="search-books">
         <div className="search-books-bar">
