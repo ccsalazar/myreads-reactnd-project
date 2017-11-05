@@ -44,7 +44,6 @@ class SearchBooks extends Component{
     })
   }
 
-
   render(){
 
     const {changeBookShelf} = this.props;
@@ -73,8 +72,8 @@ class SearchBooks extends Component{
                     <div className="book-cover" style={{
                       width: 128,
                       height: 193,
-                      backgroundImage: `url(${book.imageLinks.thumbnail})`
-                    }}></div>
+                      backgroundImage: `url(${book.imageLinks.thumbnail})`}}>
+                    </div>
                     <div className="book-shelf-changer">
                       <select defaultValue={book.shelf?book.shelf:'none'}                    onChange={(event)=>changeBookShelf(event.target.value,book)}>
                         <option value="none" disabled="disabled">Move to...</option>
